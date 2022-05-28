@@ -7,7 +7,7 @@ namespace ModeloEntrevistas.Core.Entities
         public int ID { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public bool Curso { get; set; }
-        public string Estado { get; set; }
+        public string Curso { get; set; }
+        public bool Estado { get; set; }
     }
 }

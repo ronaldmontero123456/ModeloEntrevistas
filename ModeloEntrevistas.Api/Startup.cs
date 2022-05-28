@@ -30,8 +30,8 @@ namespace ModeloEntrevistas.Api
             });
 
             services.AddDbContexts(Configuration);
-
-            services.AddSwagger($"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+            services.AddServices();
+            services.AddSwagger();
 
             services.AddMvc().AddFluentValidation(options =>
             {

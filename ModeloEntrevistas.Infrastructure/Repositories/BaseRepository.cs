@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ModeloEntrevistas.Core.Interfaces;
 using ModeloEntrevistas.Infrastructure.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,17 +9,15 @@ namespace ModeloEntrevistas.Infrastructure.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly ModeloEntrevistasContext _Context;
         protected readonly DbSet<T> dbSet;
 
         public BaseRepository(ModeloEntrevistasContext Context)
         {
-            _Context = Context;
             dbSet = Context.Set<T>();
         }
         public async Task Add(T entity)
         {
-            throw new NotImplementedException();
+            await dbSet.AddAsync(entity);
         }
 
         public async Task Delete(int id)

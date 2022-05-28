@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using ModeloEntrevistas.Core.Interfaces;
 using ModeloEntrevistas.Infrastructure.Data;
+using ModeloEntrevistas.Infrastructure.Repositories;
 using System;
 using System.IO;
 
@@ -19,15 +21,18 @@ namespace ModeloEntrevistas.Infrastructure.Extensions
             return services;
         }
 
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            return services;
+        }
 
-        public static IServiceCollection AddSwagger(this IServiceCollection services, string xmlFileName)
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(doc =>
             {
                 doc.SwaggerDoc("v1", new OpenApiInfo { Title = "Modelo Entrevistas API", Version = "v1" });
-
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFileName);
-                doc.IncludeXmlComments(xmlPath);
             });
 
             return services;
