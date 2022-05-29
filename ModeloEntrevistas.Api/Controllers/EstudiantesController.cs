@@ -46,6 +46,7 @@ namespace ModeloEntrevistas.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _unitOfWork.EstudiantesRepository.Delete(id);
+            await _unitOfWork.SaveChangesAsync();
             return Ok("Estudiante Eliminado Correctamente");
         }
 
