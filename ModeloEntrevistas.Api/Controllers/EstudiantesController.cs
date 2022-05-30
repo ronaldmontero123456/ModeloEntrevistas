@@ -28,7 +28,6 @@ namespace ModeloEntrevistas.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertEstudiantes(Estudiantes estudiante)
         {
-
             await _unitOfWork.EstudiantesRepository.Add(estudiante);
             await _unitOfWork.SaveChangesAsync();
             return Ok("Estudiante Insertado Correctamente");
